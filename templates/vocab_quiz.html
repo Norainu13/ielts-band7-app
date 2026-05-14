@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}語彙クイズ – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="fw-bold mb-0">❓ 語彙4択クイズ</h3>
+  <a href="/vocab" class="btn btn-outline-secondary btn-sm">← 戻る</a>
+</div>
+
+<form method="post">
+  {% for i, q in enumerate(questions) %}
+  <div class="card mb-3">
+    <div class="card-header" style="background:#e8eaf6;">
+      <span class="fw-bold">[{{ i+1 }}/{{ questions|length }}]</span>
+      次の単語の意味は？
+    </div>
+    <div class="card-body">
+      <div class="text-center mb-3">
+        <div class="fs-2 fw-bold text-primary">{{ q.word }}</div>
+        <div class="text-muted small fst-italic mt-1">{{ q.ex }}</div>
+      </div>
+      {% for letter, definition in q.options %}
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="q_{{ i }}" id="q{{ i }}_{{ letter }}" value="{{ letter }}" required>
+        <label class="form-check-label" for="q{{ i }}_{{ letter }}">
+          <span class="fw-bold me-1">{{ letter }}.</span> {{ definition }}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-lg">採点する →</button>
+  </div>
+</form>
+
+{% endblock %}

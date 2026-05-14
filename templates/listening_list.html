@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}リスニング – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<h3 class="fw-bold mb-4">🎧 リスニング練習</h3>
+<p class="text-muted">トランスクリプトを読みながら問題を解く形式です。本番形式では音声を聞きながら解答します。</p>
+
+<div class="row g-3">
+  {% for s in sections %}
+  <div class="col-12">
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h5 class="fw-bold mb-1">{{ s.title }}</h5>
+          <p class="text-muted small mb-2">{{ s.description.split('\n')[0] }}</p>
+          <div class="text-muted small">
+            {% for q in s.questions %}
+              <span class="me-2">{{ q.label }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <a href="/listening/{{ s.id }}" class="btn btn-primary">開始</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}リーディング – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<h3 class="fw-bold mb-4">📖 リーディング練習</h3>
+<p class="text-muted">各パッセージ20分が目安。本番は60分で3パッセージ。</p>
+
+<div class="row g-3">
+  {% for p in passages %}
+  <div class="col-12">
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h5 class="fw-bold mb-1">{{ p.title }}</h5>
+          <span class="badge bg-secondary me-2">{{ p.level }}</span>
+          <span class="badge bg-light text-dark">⏱ {{ p.time_limit }}分</span>
+          <div class="text-muted small mt-2">
+            {% for q in p.questions %}
+              <span class="me-2">{{ q.label }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <a href="/reading/{{ p.id }}" class="btn btn-primary">開始</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

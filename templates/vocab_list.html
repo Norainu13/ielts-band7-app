@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}単語リスト – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="fw-bold mb-0">📋 IELTS 必須語彙リスト</h3>
+  <a href="/vocab" class="btn btn-outline-secondary btn-sm">← 戻る</a>
+</div>
+
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th style="width:15%">単語</th>
+          <th style="width:30%">意味</th>
+          <th style="width:35%">例文</th>
+          <th style="width:20%">同義語</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for w in words %}
+        <tr>
+          <td class="fw-bold text-primary">{{ w.word }}</td>
+          <td>{{ w.def }}</td>
+          <td class="text-muted small fst-italic">{{ w.ex }}</td>
+          <td class="small">{{ w.syn | join(', ') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

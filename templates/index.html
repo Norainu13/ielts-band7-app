@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}ホーム – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-12">
+    <div class="card" style="background: linear-gradient(135deg,#1a237e,#3949ab); color:#fff;">
+      <div class="card-body py-4">
+        <h2 class="fw-bold mb-1">IELTS Band 7 Master</h2>
+        <p class="mb-3 opacity-75">目標: Band 7 (すべての技能で7.0以上) ／ 現在の重点: Reading &amp; Listening</p>
+        <div class="row g-3">
+          <div class="col-4 text-center">
+            <div class="fs-4 fw-bold">{{ hours }}h {{ minutes }}m</div>
+            <div class="small opacity-75">総学習時間</div>
+          </div>
+          <div class="col-4 text-center">
+            <div class="fs-4 fw-bold">{{ exercises }}</div>
+            <div class="small opacity-75">完了演習</div>
+          </div>
+          <div class="col-4 text-center">
+            <div class="fs-4 fw-bold">{{ streak }} 🔥</div>
+            <div class="small opacity-75">連続学習日</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 推定バンドスコア -->
+<div class="row g-3 mb-4">
+  {% for label, band, icon in [('Reading', rb, '📖'), ('Listening', lb, '🎧'), ('語彙', vb, '📝')] %}
+  <div class="col-4">
+    <div class="card text-center py-3">
+      <div class="fs-3">{{ icon }}</div>
+      <div class="small text-muted">{{ label }}</div>
+      <span class="badge bg-{{ band_class(band) }} badge-band mt-1">{{ band_label(band) }}</span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- メニュー -->
+<div class="row g-3">
+  <div class="col-md-6">
+    <a href="/reading" class="text-decoration-none">
+      <div class="card h-100 p-3 d-flex flex-row align-items-center gap-3">
+        <div class="fs-1">📖</div>
+        <div>
+          <div class="fw-bold fs-5">リーディング練習</div>
+          <div class="text-muted small">True/False/NG, 多肢選択, Short Answer</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/listening" class="text-decoration-none">
+      <div class="card h-100 p-3 d-flex flex-row align-items-center gap-3">
+        <div class="fs-1">🎧</div>
+        <div>
+          <div class="fw-bold fs-5">リスニング練習</div>
+          <div class="text-muted small">Fill-in-the-blank, 多肢選択</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/vocab" class="text-decoration-none">
+      <div class="card h-100 p-3 d-flex flex-row align-items-center gap-3">
+        <div class="fs-1">📝</div>
+        <div>
+          <div class="fw-bold fs-5">語彙トレーニング</div>
+          <div class="text-muted small">フラッシュカード・4択クイズ</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/dashboard" class="text-decoration-none">
+      <div class="card h-100 p-3 d-flex flex-row align-items-center gap-3">
+        <div class="fs-1">📊</div>
+        <div>
+          <div class="fw-bold fs-5">学習ダッシュボード</div>
+          <div class="text-muted small">進捗・バンドスコア推定</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-12">
+    <a href="/guide" class="text-decoration-none">
+      <div class="card p-3 d-flex flex-row align-items-center gap-3" style="border-left:4px solid #1a237e;">
+        <div class="fs-1">🎯</div>
+        <div>
+          <div class="fw-bold fs-5">Band 7 攻略ガイド</div>
+          <div class="text-muted small">4技能の対策ポイント・学習スケジュール</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

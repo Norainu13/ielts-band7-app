@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}ダッシュボード – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<h3 class="fw-bold mb-4">📊 学習ダッシュボード</h3>
+
+<div class="row g-3 mb-4">
+  <div class="col-4">
+    <div class="card text-center py-3">
+      <div class="fs-4 fw-bold text-primary">{{ hours }}h {{ minutes }}m</div>
+      <div class="small text-muted">総学習時間</div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card text-center py-3">
+      <div class="fs-4 fw-bold text-primary">{{ exercises }}</div>
+      <div class="small text-muted">完了演習数</div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card text-center py-3">
+      <div class="fs-4 fw-bold text-primary">{{ streak }} 🔥</div>
+      <div class="small text-muted">連続学習日</div>
+    </div>
+  </div>
+</div>
+
+{% for key, s in skills.items() %}
+<div class="card mb-3">
+  <div class="card-header d-flex justify-content-between align-items-center" style="background:#e8eaf6;">
+    <span class="fw-bold">{{ s.label }}</span>
+    <span class="badge bg-{{ s.band_cls }} badge-band">{{ band_label(s.band) }}</span>
+  </div>
+  <div class="card-body">
+    {% if s.last %}
+    <div class="row g-2">
+      <div class="col-sm-4">
+        <div class="text-muted small">最新スコア</div>
+        <div class="fw-bold">{{ s.last.score }}/{{ s.last.max_score }} ({{ s.last.percentage }}%)</div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-muted small">演習回数</div>
+        <div class="fw-bold">{{ s.count }}回</div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-muted small">最終日時</div>
+        <div class="fw-bold small">{{ s.last.date }}</div>
+      </div>
+    </div>
+    {% if s.band and s.band < 7.0 %}
+    <div class="mt-2">
+      <div class="d-flex justify-content-between small mb-1">
+        <span>現在: {{ s.band }}</span><span>目標: 7.0</span>
+      </div>
+      <div class="progress progress-thin">
+        <div class="progress-bar bg-{{ s.band_cls }}" style="width:{{ ((s.band - 4.0) / 5.0 * 100)|round }}%"></div>
+        <div class="progress-bar bg-success bg-opacity-25" style="width:{{ ((7.0 - s.band) / 5.0 * 100)|round }}%"></div>
+      </div>
+    </div>
+    {% elif s.band %}
+    <div class="alert alert-success py-1 mt-2 small mb-0">✓ Band 7 達成圏内です！</div>
+    {% endif %}
+    {% else %}
+    <div class="text-muted">まだ演習を行っていません。</div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+<a href="/" class="btn btn-outline-secondary">← ホーム</a>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}語彙トレーニング – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<h3 class="fw-bold mb-2">📝 語彙トレーニング</h3>
+<p class="text-muted mb-4">IELTS Academic Word List 必須語彙 {{ word_count }}語。Band 7 には幅広い語彙力と paraphrase 能力が必要です。</p>
+
+<div class="row g-3">
+  <div class="col-md-4">
+    <a href="/vocab/flashcard" class="text-decoration-none">
+      <div class="card h-100 p-4 text-center">
+        <div class="fs-1 mb-2">🃏</div>
+        <h5 class="fw-bold">フラッシュカード</h5>
+        <p class="text-muted small">単語を見て意味を思い出す。10語ランダム出題。</p>
+        <div class="mt-auto">
+          <span class="btn btn-outline-primary btn-sm">開始</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/vocab/quiz" class="text-decoration-none">
+      <div class="card h-100 p-4 text-center">
+        <div class="fs-1 mb-2">❓</div>
+        <h5 class="fw-bold">4択クイズ</h5>
+        <p class="text-muted small">4つの選択肢から正しい意味を選ぶ。10問ランダム。</p>
+        <div class="mt-auto">
+          <span class="btn btn-primary btn-sm">開始</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/vocab/list" class="text-decoration-none">
+      <div class="card h-100 p-4 text-center">
+        <div class="fs-1 mb-2">📋</div>
+        <h5 class="fw-bold">単語リスト</h5>
+        <p class="text-muted small">全{{ word_count }}語の一覧。意味・例文・同義語を確認。</p>
+        <div class="mt-auto">
+          <span class="btn btn-outline-secondary btn-sm">表示</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

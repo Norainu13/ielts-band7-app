@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}{{ content.title }} – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="mb-3">
+  <a href="{{ '/reading' if mode == 'reading' else '/listening' }}" class="text-decoration-none text-muted">← 一覧に戻る</a>
+</div>
+
+<h4 class="fw-bold mb-1">{{ content.title }}</h4>
+{% if mode == 'reading' %}
+  <span class="badge bg-secondary me-1">{{ content.level }}</span>
+  <span class="badge bg-light text-dark">⏱ 目安 {{ content.time_limit }}分</span>
+{% endif %}
+
+<form method="post" class="mt-4">
+
+  <!-- パッセージ / トランスクリプト -->
+  {% if mode == 'reading' %}
+  <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h6 class="fw-bold mb-0">パッセージ</h6>
+      <small class="text-muted">問題を先読みしてから読むと効果的です</small>
+    </div>
+    <div class="passage-box">
+      {% for para in content.text.split('\n\n') %}
+        <p>{{ para }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="mb-4">
+    <h6 class="fw-bold mb-2">トランスクリプト</h6>
+    <div class="transcript-box">
+      {% for line in transcript_lines %}
+        {% if line.speaker %}
+          <p class="mb-1">
+            <span class="speaker-name">{{ line.speaker }}:</span>
+            {{ line.text }}
+          </p>
+        {% elif line.text.strip() %}
+          <p class="mb-1 ms-4">{{ line.text }}</p>
+        {% else %}
+          <br>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- 問題セット -->
+  {% for qi, q_set in enumerate(content.questions) %}
+  <div class="card mb-4">
+    <div class="card-header fw-bold" style="background:#e8eaf6;">
+      {{ q_set.label }}
+    </div>
+    <div class="card-body">
+      <p class="text-muted small mb-3">{{ q_set.instruction }}</p>
+
+      {% if q_set.type == 'true_false_ng' %}
+        {% for ii, item in enumerate(q_set['items']) %}
+        <div class="q-block mb-3">
+          <p class="fw-semibold mb-2">{{ item.q }}</p>
+          <div class="d-flex gap-3 flex-wrap">
+            {% for val, label in [('TRUE','TRUE'),('FALSE','FALSE'),('NOT GIVEN','NOT GIVEN')] %}
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q_{{ qi }}_{{ ii }}" id="q{{ qi }}_{{ ii }}_{{ loop.index }}" value="{{ val }}" required>
+              <label class="form-check-label" for="q{{ qi }}_{{ ii }}_{{ loop.index }}">{{ label }}</label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+      {% elif q_set.type == 'multiple_choice' %}
+        {% for ii, item in enumerate(q_set['items']) %}
+        <div class="q-block mb-3">
+          <p class="fw-semibold mb-2">{{ item.q }}</p>
+          {% for opt in item.options %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q_{{ qi }}_{{ ii }}" id="q{{ qi }}_{{ ii }}_{{ loop.index }}" value="{{ opt[0] }}" required>
+            <label class="form-check-label" for="q{{ qi }}_{{ ii }}_{{ loop.index }}">{{ opt }}</label>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+
+      {% elif q_set.type in ('short_answer', 'fill_blank') %}
+        {% for ii, item in enumerate(q_set['items']) %}
+        <div class="q-block mb-3">
+          <label class="fw-semibold mb-1 d-block">{{ item.q }}</label>
+          <input type="text" class="form-control" name="q_{{ qi }}_{{ ii }}" placeholder="答えを入力..." required>
+        </div>
+        {% endfor %}
+
+      {% elif q_set.type == 'matching' %}
+        {% set item = q_set.items[0] %}
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <p class="fw-semibold text-muted small mb-2">概念</p>
+            {% for c in item.concepts %}
+            <div class="border rounded p-2 mb-1 bg-light">{{ c }}</div>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            <p class="fw-semibold text-muted small mb-2">説明</p>
+            {% for d in item.descriptions %}
+            <div class="border rounded p-2 mb-1">{{ d }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        {% for concept_letter, correct_num in item.answers.items() %}
+        <div class="q-block mb-2 d-flex align-items-center gap-3">
+          <span class="fw-bold" style="min-width:2rem;">{{ concept_letter }}</span>
+          <span class="text-muted me-2">→ 番号:</span>
+          <select class="form-select" style="max-width:100px;" name="match_{{ qi }}_0_{{ concept_letter }}" required>
+            <option value="">選択</option>
+            {% for d in item.descriptions %}
+            <option value="{{ loop.index }}">{{ loop.index }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-lg">採点する →</button>
+  </div>
+</form>
+
+{% endblock %}

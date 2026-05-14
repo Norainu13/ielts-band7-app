@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}結果 – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="mb-3">
+  <a href="{{ back_url }}" class="text-decoration-none text-muted">← 一覧に戻る</a>
+</div>
+
+<h4 class="fw-bold mb-4">{{ title }}</h4>
+
+<!-- スコアサマリー -->
+<div class="card mb-4">
+  <div class="card-body py-4">
+    <div class="row align-items-center">
+      <div class="col-4 text-center">
+        <div class="score-circle border border-3 border-{{ band_cls }}">
+          <div class="fs-3 fw-bold text-{{ band_cls }}">{{ band }}</div>
+          <div class="small text-muted">推定Band</div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="fw-semibold">正解率</span>
+            <span class="fw-bold">{{ total_score }} / {{ total_max }} ({{ pct }}%)</span>
+          </div>
+          <div class="progress progress-thin">
+            <div class="progress-bar bg-{{ band_cls }}" style="width:{{ pct }}%"></div>
+          </div>
+        </div>
+        {% if band >= 7.0 %}
+          <div class="alert alert-success py-2 mb-0">🎉 素晴らしい！Band 7 レベルです！</div>
+        {% elif band >= 6.0 %}
+          <div class="alert alert-warning py-2 mb-0">📈 あと一歩！継続して練習しましょう。</div>
+        {% else %}
+          <div class="alert alert-danger py-2 mb-0">💪 解説を確認して弱点を克服しましょう。</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 問題別結果 -->
+{% for r in results %}
+<div class="card mb-4">
+  <div class="card-header fw-bold" style="background:#e8eaf6;">
+    {{ r.label }}
+    <span class="float-end">{{ r.score }} / {{ r.max }}</span>
+  </div>
+  <div class="card-body p-3">
+    {% for item in r['items'] %}
+    <div class="q-block mb-3 {{ 'correct' if item.correct else 'incorrect' }}">
+      <div class="d-flex align-items-start gap-2 mb-1">
+        <span class="fs-5">{{ '✅' if item.correct else '❌' }}</span>
+        <p class="mb-0 fw-semibold">{{ item.q }}</p>
+      </div>
+      {% if item.options %}
+      <div class="small text-muted mb-1">
+        {% for opt in item.options %}
+          <span class="me-3
+            {% if opt[0] == item.correct_ans %} text-success fw-bold{% endif %}
+            {% if opt[0] == item.user_ans and not item.correct %} text-danger text-decoration-line-through{% endif %}
+          ">{{ opt }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="small mb-1">
+        あなたの答え: <span class="{{ 'text-success' if item.correct else 'text-danger' }} fw-bold">{{ item.user_ans if item.user_ans else '(未回答)' }}</span>
+        {% if not item.correct %}
+          → 正解: <span class="text-success fw-bold">{{ item.correct_ans }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% if not item.correct %}
+      <div class="small text-muted mt-1">
+        <span class="fw-semibold">解説:</span> {{ item.explanation }}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+
+<!-- Band 7 Tips -->
+<div class="card mb-4">
+  <div class="card-header fw-bold" style="background:#e8f5e9;">🎯 Band 7 攻略ポイント</div>
+  <div class="card-body">
+    {% for tip in tips %}
+    <div class="d-flex gap-2 mb-2">
+      <span>✅</span>
+      <span>{{ tip }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <a href="{{ back_url }}" class="btn btn-outline-secondary">← 一覧に戻る</a>
+  <a href="/" class="btn btn-primary">ホームへ</a>
+</div>
+
+{% endblock %}

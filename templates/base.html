@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}IELTS Band 7 Master{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #1a237e;
+      --brand-light: #3949ab;
+    }
+    body { background: #f5f6fa; min-height: 100vh; }
+    .navbar { background: var(--brand) !important; }
+    .navbar-brand { font-weight: 700; letter-spacing: .5px; }
+    .nav-link { color: rgba(255,255,255,.8) !important; }
+    .nav-link:hover, .nav-link.active { color: #fff !important; }
+    .card { border: none; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    .card-header { border-radius: 12px 12px 0 0 !important; }
+    .badge-band { font-size: 1rem; padding: .4em .8em; border-radius: 8px; }
+    .passage-box {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 1.5rem;
+      font-size: .95rem;
+      line-height: 1.8;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .transcript-box {
+      background: #fafafa;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 1.5rem;
+      font-size: .93rem;
+      line-height: 1.7;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+    .speaker-name { color: var(--brand-light); font-weight: 700; min-width: 120px; display: inline-block; }
+    .q-block { background: #fff; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; border-left: 4px solid var(--brand-light); }
+    .q-block.correct  { border-left-color: #198754; }
+    .q-block.incorrect{ border-left-color: #dc3545; }
+    .btn-primary { background: var(--brand); border-color: var(--brand); }
+    .btn-primary:hover { background: var(--brand-light); border-color: var(--brand-light); }
+    .progress-thin { height: 8px; border-radius: 4px; }
+    .score-circle {
+      width: 110px; height: 110px; border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-weight: 700; margin: 0 auto;
+    }
+    .flashcard {
+      min-height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      cursor: pointer; user-select: none;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">🎓 IELTS Band 7 Master</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/reading">📖 Reading</a></li>
+        <li class="nav-item"><a class="nav-link" href="/listening">🎧 Listening</a></li>
+        <li class="nav-item"><a class="nav-link" href="/vocab">📝 語彙</a></li>
+        <li class="nav-item"><a class="nav-link" href="/dashboard">📊 記録</a></li>
+        <li class="nav-item"><a class="nav-link" href="/guide">🎯 ガイド</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}デプロイ – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+<div class="col-lg-7">
+
+<h3 class="fw-bold mb-1">🚀 Renderへデプロイ</h3>
+<p class="text-muted mb-4">GitHubトークンを入力するだけで、自動でデプロイ準備が完了します。</p>
+
+{% if success %}
+<!-- 成功 -->
+<div class="card border-success mb-4">
+  <div class="card-body py-4">
+    <h5 class="text-success fw-bold mb-3">✅ GitHubへのプッシュ完了！</h5>
+    {% for log in logs %}
+    <div class="small text-muted mb-1">{{ log }}</div>
+    {% endfor %}
+    <hr>
+    <p class="mb-2">GitHubリポジトリ:
+      <a href="{{ repo_url }}" target="_blank" class="fw-bold">{{ repo_url }}</a>
+    </p>
+    <p class="mb-3">次のボタンでRenderに1クリックデプロイできます：</p>
+    <a href="{{ render_url }}" target="_blank" class="btn btn-primary btn-lg w-100">
+      Renderで公開する →
+    </a>
+    <div class="text-muted small mt-2 text-center">
+      Renderのアカウントがなければ無料で作成できます。「Apply」を押すだけで完了。
+    </div>
+  </div>
+</div>
+<a href="/" class="btn btn-outline-secondary">← ホームに戻る</a>
+
+{% elif error %}
+<!-- エラー -->
+<div class="alert alert-danger">❌ {{ error }}</div>
+{% if logs %}
+{% for log in logs %}
+<div class="small text-muted">{{ log }}</div>
+{% endfor %}
+{% endif %}
+<a href="/deploy" class="btn btn-primary mt-3">やり直す</a>
+
+{% else %}
+<!-- 入力フォーム -->
+<div class="card mb-4">
+  <div class="card-body p-4">
+
+    <div class="alert alert-info small mb-4">
+      <strong>Step 1:</strong>
+      <a href="https://github.com/settings/tokens/new?scopes=repo&description=IELTS+App+Deploy" target="_blank">
+        こちらでGitHubトークンを発行
+      </a>
+      して（「Generate token」をクリック）、下に貼り付けてください。
+    </div>
+
+    <form method="post">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">GitHub Personal Access Token</label>
+        <input type="password" name="token" class="form-control font-monospace"
+               placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required autocomplete="off">
+        <div class="form-text">トークンはサーバーに保存されません。プッシュ後すぐ破棄されます。</div>
+      </div>
+      <div class="mb-4">
+        <label class="form-label fw-semibold">リポジトリ名</label>
+        <input type="text" name="repo_name" class="form-control"
+               value="ielts-band7-app" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 btn-lg" id="deploy-btn"
+              onclick="this.disabled=true; this.textContent='処理中…'; this.form.submit()">
+        GitHubにプッシュしてデプロイ準備
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body small text-muted">
+    <strong>流れ：</strong><br>
+    1. GitHubにリポジトリを自動作成<br>
+    2. コードをプッシュ<br>
+    3. Renderのワンクリックデプロイページが開く → 「Apply」だけ押せば公開完了
+  </div>
+</div>
+
+{% endif %}
+
+</div>
+</div>
+
+{% endblock %}

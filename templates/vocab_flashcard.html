@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}フラッシュカード – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="fw-bold mb-0">🃏 フラッシュカード</h3>
+  <a href="/vocab" class="btn btn-outline-secondary btn-sm">← 戻る</a>
+</div>
+
+<!-- 進捗バー -->
+<div class="mb-3">
+  <div class="d-flex justify-content-between small text-muted mb-1">
+    <span id="progress-text">1 / {{ words|length }}</span>
+    <span id="score-text">正解: 0</span>
+  </div>
+  <div class="progress progress-thin">
+    <div class="progress-bar bg-primary" id="progress-bar" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- フラッシュカード本体 -->
+<div id="card-area">
+  <div class="flashcard mb-3 p-4" id="flashcard" onclick="showAnswer()">
+    <div class="text-center">
+      <div class="fs-1 fw-bold text-primary mb-2" id="word-display"></div>
+      <div class="text-muted small" id="example-display"></div>
+      <div class="text-muted small mt-3" id="hint">タップして答えを見る</div>
+    </div>
+  </div>
+
+  <!-- 答え（最初は非表示） -->
+  <div id="answer-area" class="d-none">
+    <div class="card border-success mb-3 p-3 text-center">
+      <div class="text-muted small mb-1">意味</div>
+      <div class="fw-bold fs-5" id="def-display"></div>
+      <div class="text-muted small mt-2">同義語: <span id="syn-display"></span></div>
+    </div>
+    <div class="d-flex gap-3">
+      <button class="btn btn-danger flex-fill btn-lg" onclick="grade(false)">❌ 不正解</button>
+      <button class="btn btn-success flex-fill btn-lg" onclick="grade(true)">✅ 正解</button>
+    </div>
+  </div>
+</div>
+
+<!-- 結果画面（最初は非表示） -->
+<div id="result-area" class="d-none text-center">
+  <div class="card p-5 mb-4">
+    <div class="fs-1 mb-2">🎉</div>
+    <h4 class="fw-bold">完了！</h4>
+    <div class="fs-3 fw-bold my-3">
+      <span id="final-score" class="text-success"></span> / {{ words|length }}
+    </div>
+    <div class="text-muted">正解率: <span id="final-pct"></span>%</div>
+  </div>
+  <div class="d-flex gap-2 justify-content-center">
+    <a href="/vocab/flashcard" class="btn btn-primary">もう一度</a>
+    <a href="/vocab" class="btn btn-outline-secondary">← 戻る</a>
+  </div>
+</div>
+
+<script>
+const words = {{ words | tojson }};
+let current = 0;
+let score = 0;
+
+function showCard() {
+  const w = words[current];
+  document.getElementById('word-display').textContent = w.word;
+  document.getElementById('example-display').textContent = w.ex;
+  document.getElementById('hint').textContent = 'タップして答えを見る';
+  document.getElementById('answer-area').classList.add('d-none');
+  document.getElementById('flashcard').style.cursor = 'pointer';
+  updateProgress();
+}
+
+function showAnswer() {
+  const w = words[current];
+  document.getElementById('def-display').textContent = w.def;
+  document.getElementById('syn-display').textContent = w.syn.join(', ');
+  document.getElementById('answer-area').classList.remove('d-none');
+  document.getElementById('hint').textContent = '';
+  document.getElementById('flashcard').style.cursor = 'default';
+}
+
+function grade(correct) {
+  if (correct) score++;
+  current++;
+  if (current >= words.length) {
+    showResult();
+  } else {
+    showCard();
+  }
+}
+
+function updateProgress() {
+  const pct = Math.round(current / words.length * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = (current + 1) + ' / ' + words.length;
+  document.getElementById('score-text').textContent = '正解: ' + score;
+}
+
+function showResult() {
+  document.getElementById('card-area').classList.add('d-none');
+  document.getElementById('result-area').classList.remove('d-none');
+  document.getElementById('final-score').textContent = score;
+  document.getElementById('final-pct').textContent = Math.round(score / words.length * 100);
+  document.getElementById('progress-bar').style.width = '100%';
+}
+
+showCard();
+</script>
+{% endblock %}

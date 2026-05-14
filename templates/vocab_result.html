@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}クイズ結果 – IELTS Band 7 Master{% endblock %}
+{% block content %}
+
+<h3 class="fw-bold mb-4">📊 語彙クイズ 結果</h3>
+
+<div class="card mb-4">
+  <div class="card-body py-4">
+    <div class="row align-items-center">
+      <div class="col-4 text-center">
+        <div class="score-circle border border-3 border-{{ band_cls }}">
+          <div class="fs-3 fw-bold text-{{ band_cls }}">{{ band }}</div>
+          <div class="small text-muted">推定Band</div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="fw-semibold">正解率</span>
+            <span class="fw-bold">{{ score }} / {{ total }} ({{ pct }}%)</span>
+          </div>
+          <div class="progress progress-thin">
+            <div class="progress-bar bg-{{ band_cls }}" style="width:{{ pct }}%"></div>
+          </div>
+        </div>
+        {% if band >= 7.0 %}
+          <div class="alert alert-success py-2 mb-0">🎉 素晴らしい語彙力です！</div>
+        {% elif band >= 6.0 %}
+          <div class="alert alert-warning py-2 mb-0">📈 あと一歩！復習を続けましょう。</div>
+        {% else %}
+          <div class="alert alert-danger py-2 mb-0">💪 フラッシュカードで毎日復習しよう！</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header fw-bold" style="background:#e8eaf6;">問題別結果</div>
+  <div class="card-body p-3">
+    {% for r in results %}
+    <div class="q-block mb-3 {{ 'correct' if r.correct else 'incorrect' }}">
+      <div class="d-flex align-items-center gap-2 mb-1">
+        <span class="fs-5">{{ '✅' if r.correct else '❌' }}</span>
+        <span class="fw-bold text-primary">{{ r.word }}</span>
+      </div>
+      <div class="small mb-1">
+        {% for letter, definition in r.options %}
+          <span class="me-3
+            {% if letter == r.correct_ans %} text-success fw-bold{% endif %}
+            {% if letter == r.user_ans and not r.correct %} text-danger text-decoration-line-through{% endif %}
+          ">{{ letter }}. {{ definition }}</span>
+        {% endfor %}
+      </div>
+      {% if not r.correct %}
+      <div class="small text-muted">正解: <span class="text-success fw-bold">{{ r.definition }}</span></div>
+      {% endif %}
+      <div class="small text-muted">同義語: {{ r.synonyms | join(', ') }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <a href="/vocab/quiz" class="btn btn-primary">もう一度</a>
+  <a href="/vocab" class="btn btn-outline-secondary">← 語彙メニュー</a>
+</div>
+
+{% endblock %}
