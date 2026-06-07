@@ -39,7 +39,7 @@ def _save_score(skill, score, max_score, exercise_name):
     }
     key = f'{skill}_scores'
     p[key].append(entry)
-    p[key] = p[key][-10:]  # 直近10件だけ保持（Cookie容量節約）
+    p[key] = p[key][-5:]  # 直近5件だけ保持（Cookie容量節約）
     p['exercises_completed'] += 1
     _update_streak(p)
     session.modified = True
@@ -248,6 +248,9 @@ def vocab_flashcard():
 def vocab_quiz():
     if request.method == 'POST':
         answers = session.get('vocab_quiz', [])
+        if not answers:
+            return redirect(url_for('vocab_quiz'))
+        vocab_index = {v['word']: v for v in VOCAB_LIST}
         score = 0
         results = []
         for i, entry in enumerate(answers):
@@ -255,14 +258,17 @@ def vocab_quiz():
             correct = user_ans == entry['correct']
             if correct:
                 score += 1
+            # option_wordsからoptionsを再構築
+            options = [(chr(65 + j), vocab_index[wn]['def']) for j, wn in enumerate(entry['option_words'])]
+            word_data = vocab_index.get(entry['word'], {})
             results.append({
                 'word': entry['word'],
                 'user_ans': user_ans,
                 'correct_ans': entry['correct'],
                 'correct': correct,
-                'definition': entry['def'],
-                'synonyms': entry['syn'],
-                'options': entry['options'],
+                'definition': word_data.get('def', ''),
+                'synonyms': word_data.get('syn', []),
+                'options': options,
             })
         pct = round(score / len(answers) * 100, 1) if answers else 0
         band = pct_to_band(pct)
@@ -282,11 +288,14 @@ def vocab_quiz():
         correct_letter = chr(65 + next(i for i, o in enumerate(opts) if o['word'] == w['word']))
         options = [(chr(65 + i), o['def']) for i, o in enumerate(opts)]
         questions.append({'word': w['word'], 'ex': w['ex'], 'options': options})
+        # セッションには単語名のみ保存してCookieサイズを削減
         quiz_session.append({
-            'word': w['word'], 'correct': correct_letter,
-            'def': w['def'], 'syn': w['syn'], 'options': options,
+            'word': w['word'],
+            'correct': correct_letter,
+            'option_words': [o['word'] for o in opts],
         })
     session['vocab_quiz'] = quiz_session
+    session.modified = True
     return render_template('vocab_quiz.html', questions=questions)
 
 
