@@ -2,6 +2,55 @@
 {% block title %}{{ content.title }} – IELTS Band 7 Master{% endblock %}
 {% block content %}
 
+{% if mode == 'reading' %}
+<div id="timer-bar" class="d-flex align-items-center justify-content-between px-3 py-2 mb-3 rounded"
+     style="background:#e8eaf6; position:sticky; top:0; z-index:100; transition:background 0.5s;">
+  <div>
+    <span class="fw-bold text-muted small">経過</span>
+    <span id="elapsed" class="fw-bold ms-1" style="font-variant-numeric:tabular-nums;">00:00</span>
+  </div>
+  <div class="text-center">
+    <span class="fw-bold" style="font-size:0.85rem;">⏱ 目安 {{ content.time_limit }}分</span>
+  </div>
+  <div>
+    <span class="fw-bold text-muted small">残り</span>
+    <span id="remaining" class="fw-bold ms-1" style="font-variant-numeric:tabular-nums;">{{ '%02d'|format(content.time_limit) }}:00</span>
+  </div>
+</div>
+<script>
+(function() {
+  const limitSec = {{ content.time_limit }} * 60;
+  let elapsed = 0;
+  const elEl = document.getElementById('elapsed');
+  const remEl = document.getElementById('remaining');
+  const bar   = document.getElementById('timer-bar');
+  function fmt(s) {
+    return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+  }
+  setInterval(function() {
+    elapsed++;
+    elEl.textContent = fmt(elapsed);
+    const rem = Math.max(limitSec - elapsed, 0);
+    remEl.textContent = fmt(rem);
+    if (rem <= 0) {
+      bar.style.background = '#ffcdd2';
+      remEl.style.color = '#c62828';
+      remEl.textContent = '時間切れ';
+    } else if (rem <= 300) {
+      bar.style.background = '#fff3e0';
+      remEl.style.color = '#e65100';
+    } else if (rem <= 600) {
+      bar.style.background = '#fffde7';
+      remEl.style.color = '#f57f17';
+    } else {
+      bar.style.background = '#e8eaf6';
+      remEl.style.color = '';
+    }
+  }, 1000);
+})();
+</script>
+{% endif %}
+
 <div class="mb-3">
   <a href="{{ '/reading' if mode == 'reading' else '/listening' }}" class="text-decoration-none text-muted">← 一覧に戻る</a>
 </div>
@@ -9,7 +58,6 @@
 <h4 class="fw-bold mb-1">{{ content.title }}</h4>
 {% if mode == 'reading' %}
   <span class="badge bg-secondary me-1">{{ content.level }}</span>
-  <span class="badge bg-light text-dark">⏱ 目安 {{ content.time_limit }}分</span>
 {% endif %}
 
 <form method="post" class="mt-4">
