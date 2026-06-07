@@ -118,7 +118,8 @@ def reading_detail(pid):
     if request.method == 'POST':
         return _process_exercise(passage['questions'], passage['title'],
                                  'reading', passage['band7_tips'],
-                                 url_for('reading_list'), time_minutes=20)
+                                 url_for('reading_list'), time_minutes=20,
+                                 translation=passage.get('translation'))
     return render_template('exercise.html', mode='reading', content=passage)
 
 
@@ -155,7 +156,7 @@ def _parse_transcript(raw):
     return lines
 
 
-def _process_exercise(question_sets, title, skill, tips, back_url, time_minutes):
+def _process_exercise(question_sets, title, skill, tips, back_url, time_minutes, translation=None):
     total_score = 0
     total_max = 0
     results = []
@@ -223,7 +224,8 @@ def _process_exercise(question_sets, title, skill, tips, back_url, time_minutes)
         title=title, skill=skill,
         total_score=total_score, total_max=total_max, pct=pct,
         band=band, band_cls=band_class(band),
-        results=results, tips=tips, back_url=back_url)
+        results=results, tips=tips, back_url=back_url,
+        translation=translation)
 
 
 # ── Vocabulary ────────────────────────────────────────────────────────────────
