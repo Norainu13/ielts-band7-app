@@ -569,7 +569,358 @@ READING_PASSAGES = [
             "先延ばしを減らす効果が示されている。困難な課題に伴う否定的感情を排除しようとするのではなく、"
             "こうした感情を受け入れながらも目的を持った行動を取ることをこれらの療法は促す。"
         )
-    }
+    },
+    {
+        'id': 3,
+        'title': 'Passage 3: The Microbiome and Human Health',
+        'level': 'Academic',
+        'time_limit': 20,
+        'text': (
+            "The human microbiome—the vast community of microorganisms living in and on the human body—"
+            "has emerged as one of the most exciting frontiers in medical science. The gut microbiome alone "
+            "contains approximately 38 trillion microbial cells, outnumbering human cells by a ratio of "
+            "roughly 1.3 to 1. Far from being passive residents, these microorganisms play active roles in "
+            "digestion, immune function, and even mental health.\n\n"
+            "Research into the gut-brain axis has revealed a bidirectional communication system between "
+            "the gastrointestinal tract and the central nervous system. The vagus nerve, which runs from "
+            "the brainstem to the abdomen, serves as a major highway for this communication. Studies have "
+            "shown that gut bacteria produce neurotransmitters such as serotonin and dopamine—chemicals "
+            "commonly associated with mood regulation. Remarkably, approximately 90% of the body's serotonin "
+            "is produced in the gut, not the brain.\n\n"
+            "The composition of an individual's microbiome is shaped by numerous factors, including genetics, "
+            "diet, antibiotic use, and early-life experiences such as mode of birth and breastfeeding. "
+            "Infants delivered by caesarean section, for instance, are not exposed to the maternal vaginal "
+            "microbiome during birth and may consequently develop a different microbial profile. "
+            "Long-term studies suggest that these early differences can have lasting effects on immune "
+            "development and susceptibility to conditions such as asthma and allergies.\n\n"
+            "Diet exerts perhaps the most powerful ongoing influence on microbiome composition. "
+            "A diet rich in plant-based foods and dietary fibre promotes the growth of beneficial bacteria "
+            "such as Bifidobacterium and Lactobacillus, which produce short-chain fatty acids that "
+            "nourish the gut lining and reduce inflammation. Conversely, diets high in processed foods, "
+            "sugar, and saturated fat are associated with reduced microbial diversity—a state sometimes "
+            "called dysbiosis—which has been linked to a range of chronic diseases.\n\n"
+            "The therapeutic potential of microbiome science has generated enormous commercial interest. "
+            "Probiotics—live microorganisms intended to confer health benefits—have become a multi-billion "
+            "dollar industry. However, scientific evidence for many probiotic products remains mixed. "
+            "While certain strains show clear benefits for specific conditions such as antibiotic-associated "
+            "diarrhoea and irritable bowel syndrome, the broader health claims made by many manufacturers "
+            "are not yet supported by robust clinical evidence.\n\n"
+            "A more dramatic intervention is faecal microbiota transplantation (FMT), in which gut bacteria "
+            "from a healthy donor are transferred to a patient. FMT has shown remarkable success in treating "
+            "recurrent Clostridioides difficile infection, with cure rates exceeding 90%. Researchers are "
+            "now investigating its potential for conditions ranging from obesity and type 2 diabetes to "
+            "depression and Parkinson's disease, though results remain preliminary."
+        ),
+        'questions': [
+            {
+                'type': 'true_false_ng',
+                'label': 'Part A: True / False / Not Given',
+                'instruction': 'TRUE / FALSE / NOT GIVEN （または T / F / NG）で答えてください。',
+                'items': [
+                    {
+                        'q': '1. Human cells outnumber microbial cells in the gut.',
+                        'answer': 'FALSE',
+                        'alt': ['FALSE', 'F'],
+                        'explanation': '"outnumbering human cells by a ratio of roughly 1.3 to 1" — 微生物細胞のほうが多い。'
+                    },
+                    {
+                        'q': '2. Approximately 90% of the body\'s serotonin is produced in the gut.',
+                        'answer': 'TRUE',
+                        'alt': ['TRUE', 'T'],
+                        'explanation': '"approximately 90% of the body\'s serotonin is produced in the gut" と一致。'
+                    },
+                    {
+                        'q': '3. Caesarean-born infants have weaker immune systems than vaginally-born infants.',
+                        'answer': 'NOT GIVEN',
+                        'alt': ['NOT GIVEN', 'NG'],
+                        'explanation': '帝王切開の影響は「異なる微生物プロファイル」と述べられるが、免疫が「弱い」とは断言していない。'
+                    },
+                    {
+                        'q': '4. FMT has a cure rate of over 90% for recurrent C. difficile infection.',
+                        'answer': 'TRUE',
+                        'alt': ['TRUE', 'T'],
+                        'explanation': '"cure rates exceeding 90%" と一致。'
+                    },
+                    {
+                        'q': '5. All probiotic products have been proven effective by clinical research.',
+                        'answer': 'FALSE',
+                        'alt': ['FALSE', 'F'],
+                        'explanation': '"broader health claims… are not yet supported by robust clinical evidence" — 全製品が証明済みとは言えない。'
+                    },
+                ]
+            },
+            {
+                'type': 'multiple_choice',
+                'label': 'Part B: Multiple Choice',
+                'instruction': '最も適切な答えを A〜D から選んでください。',
+                'items': [
+                    {
+                        'q': '6. What role does the vagus nerve play according to the passage?',
+                        'options': [
+                            'A. It produces serotonin directly',
+                            'B. It links the gut and the brain for communication',
+                            'C. It controls the immune system exclusively',
+                            'D. It regulates antibiotic production',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"serves as a major highway for this communication" between gut and brain。'
+                    },
+                    {
+                        'q': '7. What is "dysbiosis" as described in the passage?',
+                        'options': [
+                            'A. A type of beneficial gut bacteria',
+                            'B. A diet high in plant-based fibre',
+                            'C. A state of reduced microbial diversity',
+                            'D. A surgical treatment for gut disease',
+                        ],
+                        'answer': 'C',
+                        'explanation': '"reduced microbial diversity—a state sometimes called dysbiosis"'
+                    },
+                    {
+                        'q': '8. Why does the passage say FMT results for conditions like obesity are "preliminary"?',
+                        'options': [
+                            'A. The treatment is too expensive to test widely',
+                            'B. Research is still at an early stage',
+                            'C. It has already been proven ineffective',
+                            'D. Regulators have banned further trials',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"results remain preliminary" — まだ研究の初期段階であることを示す。'
+                    },
+                ]
+            },
+            {
+                'type': 'short_answer',
+                'label': 'Part C: Short Answer (3語以内)',
+                'instruction': '以下の質問にパッセージから3語以内で答えてください。',
+                'items': [
+                    {
+                        'q': '9. What type of acids do beneficial bacteria produce that nourish the gut lining?',
+                        'answer': 'short-chain fatty acids',
+                        'keywords': ['short-chain', 'fatty', 'short chain'],
+                        'explanation': '"produce short-chain fatty acids that nourish the gut lining"'
+                    },
+                    {
+                        'q': '10. What is the approximate ratio of microbial cells to human cells in the body?',
+                        'answer': '1.3 to 1',
+                        'keywords': ['1.3', '1.3 to 1'],
+                        'explanation': '"outnumbering human cells by a ratio of roughly 1.3 to 1"'
+                    },
+                ]
+            }
+        ],
+        'band7_tips': [
+            'NOT GIVEN と FALSE の違いに注意。「述べられていない」と「矛盾する」は別物。',
+            '数値比較の問題（比率・割合）は正確に読む。"outnumber" のような比較表現を見落とさない。',
+            '専門用語（dysbiosis、FMT など）は文中で定義されることが多い。前後の文脈から意味を推測しよう。',
+            '複数の段落にまたがる内容を問う問題は、キーワードで素早く該当段落を見つけることが重要。',
+        ],
+        'translation': (
+            "【第1段落】人体のマイクロバイオーム——人体の内外に生息する膨大な微生物の集まり——は、"
+            "医学科学において最もエキサイティングな新分野の一つとして浮上している。腸内マイクロバイオームだけでも"
+            "約38兆個の微生物細胞を含み、人間の細胞数を約1.3対1の比率で上回る。"
+            "これらの微生物は単なる居候ではなく、消化・免疫機能・さらには精神的健康においても積極的な役割を担っている。\n\n"
+            "【第2段落】腸脳軸の研究は、消化管と中枢神経系の間の双方向コミュニケーションシステムを明らかにした。"
+            "脳幹から腹部まで走る迷走神経は、このコミュニケーションの主要な経路となっている。"
+            "研究により、腸内細菌が気分調節に関係するセロトニンやドーパミンといった神経伝達物質を産生することが示された。"
+            "驚くべきことに、体内のセロトニンの約90%は脳ではなく腸で産生されている。\n\n"
+            "【第3段落】個人のマイクロバイオーム組成は、遺伝・食事・抗生物質の使用・出産様式や母乳育児など"
+            "生後早期の経験を含む多くの要因によって形成される。例えば帝王切開で生まれた乳児は、"
+            "出生時に母体の腟内マイクロバイオームにさらされず、異なる微生物プロファイルを持つ可能性がある。"
+            "長期研究では、これらの早期の違いが免疫発達や喘息・アレルギーへの感受性に永続的な影響を与えることが示唆される。\n\n"
+            "【第4段落】食事はマイクロバイオーム組成に対して最も強力な継続的影響をおそらく及ぼす。"
+            "植物性食品と食物繊維が豊富な食事は、ビフィズス菌や乳酸菌などの有益な細菌の増殖を促し、"
+            "腸壁を養い炎症を抑える短鎖脂肪酸を産生する。反対に、加工食品・糖分・飽和脂肪が多い食事は"
+            "「腸内細菌叢失調（ディスバイオーシス）」と呼ばれる微生物多様性の低下と関連し、"
+            "さまざまな慢性疾患と結びついている。\n\n"
+            "【第5段落】マイクロバイオーム科学の治療的可能性は巨大な商業的関心を生んでいる。"
+            "健康上の恩恵をもたらすことを意図した生きた微生物であるプロバイオティクスは、数十億ドル規模の産業となった。"
+            "しかし、多くのプロバイオティクス製品の科学的根拠は依然として一貫していない。"
+            "特定の菌株が抗生物質関連下痢症や過敏性腸症候群などの特定の状態に明確な効果を示す一方で、"
+            "多くのメーカーが掲げる広範な健康効果の主張は、まだ強固な臨床的証拠に裏付けられていない。\n\n"
+            "【第6段落】より劇的な介入法として、健康なドナーの腸内細菌を患者に移植する糞便微生物叢移植（FMT）がある。"
+            "FMTは再発性クロストリジウム・ディフィシル感染症の治療で目覚ましい成功を収め、90%を超える治癒率を示している。"
+            "研究者らは今、肥満・2型糖尿病から鬱病・パーキンソン病に至るまでの疾患へのFMTの可能性を研究しているが、"
+            "結果はまだ初期段階にとどまっている。"
+        )
+    },
+    {
+        'id': 4,
+        'title': 'Passage 4: Urbanisation and the Future of Cities',
+        'level': 'Academic',
+        'time_limit': 20,
+        'text': (
+            "The twenty-first century is witnessing an unprecedented shift in human settlement patterns. "
+            "According to the United Nations, more than half of the world's population now lives in urban "
+            "areas, a proportion expected to reach 68% by 2050. This rapid urbanisation, concentrated "
+            "primarily in Asia and Africa, is reshaping economies, environments, and social structures on a "
+            "global scale.\n\n"
+            "Proponents of urbanisation argue that cities are fundamentally engines of economic growth and "
+            "innovation. The concentration of people, businesses, and institutions in close proximity creates "
+            "what economists call 'agglomeration effects'—productivity gains that arise from the ease of "
+            "sharing knowledge, labour, and infrastructure. Studies consistently show that doubling a city's "
+            "population increases its economic output by approximately 15%, a phenomenon known as urban "
+            "scaling. Silicon Valley, London's financial district, and Tokyo's manufacturing clusters are "
+            "frequently cited as examples of agglomeration in action.\n\n"
+            "However, the benefits of urbanisation are not evenly distributed. Rapid urban growth in "
+            "developing nations often outpaces the capacity of governments to provide adequate housing, "
+            "sanitation, and transport infrastructure. The result is the proliferation of informal "
+            "settlements—commonly known as slums—where an estimated one billion people currently live. "
+            "These areas frequently lack access to clean water, reliable electricity, and formal employment, "
+            "creating cycles of poverty that are difficult to break.\n\n"
+            "Environmental concerns represent another major challenge. Cities consume approximately 78% of "
+            "the world's energy and produce more than 60% of greenhouse gas emissions, despite covering "
+            "less than 2% of the Earth's surface. Urban heat islands—areas where concrete and asphalt "
+            "absorb and re-emit solar radiation—can make city temperatures 1–3 degrees Celsius higher than "
+            "surrounding rural areas. This effect is expected to intensify as climate change progresses.\n\n"
+            "In response to these challenges, the concept of the 'smart city' has gained traction among "
+            "urban planners. Smart cities use data and digital technology to optimise services such as "
+            "traffic management, energy distribution, and waste collection. Singapore is frequently held up "
+            "as a model, having invested heavily in sensor networks, predictive analytics, and integrated "
+            "public transport systems. Critics, however, warn that surveillance infrastructure built for "
+            "efficiency can also be repurposed for social control, raising significant civil liberties "
+            "concerns.\n\n"
+            "Urban planners increasingly advocate for the '15-minute city' model, pioneered in Paris under "
+            "Mayor Anne Hidalgo. The concept holds that residents should be able to access all essential "
+            "services—work, shopping, education, healthcare, and leisure—within a 15-minute walk or cycle "
+            "from their home. Advocates argue this reduces car dependency, improves quality of life, and "
+            "builds stronger local communities. Whether this model can be replicated in less affluent or "
+            "lower-density urban environments remains an open question."
+        ),
+        'questions': [
+            {
+                'type': 'true_false_ng',
+                'label': 'Part A: True / False / Not Given',
+                'instruction': 'TRUE / FALSE / NOT GIVEN （または T / F / NG）で答えてください。',
+                'items': [
+                    {
+                        'q': '1. More than half of the world\'s population currently lives in urban areas.',
+                        'answer': 'TRUE',
+                        'alt': ['TRUE', 'T'],
+                        'explanation': '"more than half of the world\'s population now lives in urban areas" と一致。'
+                    },
+                    {
+                        'q': '2. Doubling a city\'s population increases its productivity by approximately 15%.',
+                        'answer': 'TRUE',
+                        'alt': ['TRUE', 'T'],
+                        'explanation': '"doubling a city\'s population increases its economic output by approximately 15%"'
+                    },
+                    {
+                        'q': '3. Cities currently cover more than 10% of the Earth\'s surface.',
+                        'answer': 'FALSE',
+                        'alt': ['FALSE', 'F'],
+                        'explanation': '"covering less than 2% of the Earth\'s surface" — 10%以上とは矛盾。'
+                    },
+                    {
+                        'q': '4. The 15-minute city model was first introduced in Tokyo.',
+                        'answer': 'FALSE',
+                        'alt': ['FALSE', 'F'],
+                        'explanation': '"pioneered in Paris under Mayor Anne Hidalgo" — パリが発祥。'
+                    },
+                    {
+                        'q': '5. Singapore has faced legal challenges over its smart city surveillance systems.',
+                        'answer': 'NOT GIVEN',
+                        'alt': ['NOT GIVEN', 'NG'],
+                        'explanation': '批判があるとは述べるが、法的な問題が起きたとは記述されていない。'
+                    },
+                ]
+            },
+            {
+                'type': 'multiple_choice',
+                'label': 'Part B: Multiple Choice',
+                'instruction': '最も適切な答えを A〜D から選んでください。',
+                'items': [
+                    {
+                        'q': '6. What are "agglomeration effects" as described in the passage?',
+                        'options': [
+                            'A. Environmental damage caused by city growth',
+                            'B. Productivity gains from proximity of people and businesses',
+                            'C. Government policies to attract foreign investment',
+                            'D. The spread of slums in developing cities',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"productivity gains that arise from the ease of sharing knowledge, labour, and infrastructure"'
+                    },
+                    {
+                        'q': '7. What concern do critics raise about smart city technology?',
+                        'options': [
+                            'A. It is too expensive to implement',
+                            'B. It can worsen traffic congestion',
+                            'C. It may be used for social control',
+                            'D. It creates more energy consumption',
+                        ],
+                        'answer': 'C',
+                        'explanation': '"surveillance infrastructure built for efficiency can also be repurposed for social control"'
+                    },
+                    {
+                        'q': '8. What does the urban heat island effect describe?',
+                        'options': [
+                            'A. Rising sea levels around coastal cities',
+                            'B. Higher temperatures in cities than surrounding rural areas',
+                            'C. Air pollution caused by vehicle emissions',
+                            'D. Flooding due to impermeable urban surfaces',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"can make city temperatures 1–3 degrees Celsius higher than surrounding rural areas"'
+                    },
+                ]
+            },
+            {
+                'type': 'short_answer',
+                'label': 'Part C: Short Answer (3語以内)',
+                'instruction': '以下の質問にパッセージから3語以内で答えてください。',
+                'items': [
+                    {
+                        'q': '9. By what year is the urban population share expected to reach 68%?',
+                        'answer': '2050',
+                        'keywords': ['2050'],
+                        'explanation': '"expected to reach 68% by 2050"'
+                    },
+                    {
+                        'q': '10. Approximately how many people currently live in informal settlements?',
+                        'answer': 'one billion',
+                        'keywords': ['billion', '1 billion', 'one billion'],
+                        'explanation': '"an estimated one billion people currently live"'
+                    },
+                ]
+            }
+        ],
+        'band7_tips': [
+            '数値・統計が多いパッセージ。問題を先読みして必要な数字にアンダーラインを引く習慣をつけよう。',
+            '"agglomeration" など難しい語は必ず本文中で説明される。定義部分を見つければ問題が解ける。',
+            'TRUE/FALSE の判断は本文の記述のみに基づく。常識や背景知識で判断しないこと。',
+            '最終問題ほど難易度が上がりやすい。時間を意識して取り組もう。',
+        ],
+        'translation': (
+            "【第1段落】21世紀は、人類の居住パターンにおける前例のない変化を目撃している。"
+            "国連によれば、現在世界人口の半数以上が都市部に居住しており、"
+            "この割合は2050年までに68%に達すると予測されている。"
+            "主にアジアとアフリカに集中するこの急速な都市化は、経済・環境・社会構造をグローバル規模で塗り替えている。\n\n"
+            "【第2段落】都市化の支持者は、都市は本質的に経済成長とイノベーションのエンジンだと主張する。"
+            "人・企業・機関が近接して集まることで、経済学者が「集積効果」と呼ぶ——知識・労働力・インフラの共有の容易さから"
+            "生まれる生産性向上——が生じる。研究では一貫して、都市の人口を2倍にすると経済産出量が約15%増加することが示されており、"
+            "これは「都市スケーリング」として知られる現象だ。シリコンバレー・ロンドンの金融街・東京の製造業集積地は、"
+            "集積効果の実例として頻繁に挙げられる。\n\n"
+            "【第3段落】しかし都市化の恩恵は均等に分配されているわけではない。"
+            "途上国での急速な都市成長は、政府が十分な住宅・衛生設備・交通インフラを提供する能力を上回ることが多い。"
+            "その結果がスラムと呼ばれるインフォーマル居住地の増殖であり、そこには現在推定10億人が暮らしている。"
+            "これらの地域は清潔な水・安定した電力・正規雇用へのアクセスが欠如していることが多く、抜け出しにくい貧困の連鎖を生む。\n\n"
+            "【第4段落】環境問題もまた大きな課題を表している。都市は地球表面積の2%未満しか占めないにもかかわらず、"
+            "世界のエネルギーの約78%を消費し、温室効果ガス排出量の60%以上を生産している。"
+            "コンクリートやアスファルトが太陽放射を吸収・再放出するヒートアイランド現象により、"
+            "都市の気温は周囲の農村地域より1〜3度高くなることがある。この効果は気候変動が進むにつれて強まると予測される。\n\n"
+            "【第5段落】これらの課題への対応として、「スマートシティ」の概念が都市計画者の間で支持を集めている。"
+            "スマートシティはデータとデジタル技術を使い、交通管理・エネルギー配送・廃棄物収集などのサービスを最適化する。"
+            "シンガポールはセンサーネットワーク・予測分析・統合公共交通システムへの多大な投資でモデルとして頻繁に取り上げられる。"
+            "しかし批評家は、効率化のために構築された監視インフラが社会統制に転用される可能性も指摘し、"
+            "重大な市民の自由への懸念を提起している。\n\n"
+            "【第6段落】都市計画者はますます、パリのアンヌ・イダルゴ市長が先駆けた「15分都市」モデルを支持するようになっている。"
+            "この概念は、住民が仕事・買い物・教育・医療・余暇など生活に不可欠なすべてのサービスに、"
+            "自宅から15分以内の徒歩または自転車でアクセスできるべきだというものだ。"
+            "支持者はこれが車への依存を減らし、生活の質を向上させ、地域コミュニティを強化すると主張する。"
+            "このモデルを豊かさの低い都市や低密度な都市環境で再現できるかどうかは、まだ未解決の問題だ。"
+        )
+    },
 ]
 
 
@@ -828,7 +1179,252 @@ and the Netherlands where government subsidies have really accelerated developme
             '話者が誰かを混同しないよう、Emma/Marcus/Tutor の発言をしっかり区別する。',
             'IELTS Listening では答えが paraphrase（言い換え）されていることが多い。原文のキーワードにとらわれすぎない。',
         ]
-    }
+    },
+    {
+        'id': 3,
+        'title': 'Section 2: Community Centre Announcement',
+        'description': '地域センターのプログラム案内（一人の話者によるモノローグ）です。\n施設・スケジュール・条件などの情報を正確に把握しましょう。',
+        'transcript': """\
+Good afternoon, everyone, and welcome to the Riverside Community Centre's autumn programme
+information session. I'm Sarah, the activities coordinator, and I'll be telling you about
+everything we have on offer this season.
+
+First, let me tell you about our new fitness facilities. We've completely renovated our gym,
+which now has 40 new machines, including treadmills, rowing machines, and cycling equipment.
+The gym is open seven days a week: Monday to Friday from 7 am to 9 pm, and on weekends from
+9 am to 6 pm. A monthly gym pass costs £28, which I think you'll agree is excellent value.
+
+We also have a new swimming pool, which opened just three weeks ago. It has six lanes and
+is kept at a constant temperature of 28 degrees. Adult swimming costs £3.50 per session,
+or you can buy a block of ten sessions for £30—that works out to a saving of £5.
+
+Now, a few important notices. The café on the ground floor will be closed for refurbishment
+from the 1st to the 15th of next month. During this time, vending machines will be available
+in the entrance hall. Also, our car park on Nelson Road is undergoing resurfacing and will be
+closed until further notice. Alternative parking is available at the Westfield multi-storey
+car park, just a five-minute walk away.
+
+For our classes, we have several new additions this term. We're launching a beginner's yoga
+class every Tuesday at 6:30 pm, led by instructor Maria Gonzalez, who has fifteen years of
+experience. No previous experience is necessary and mats are provided. The class is limited
+to twelve participants, so early booking is essential. You can register online at
+riversidecc.org or by calling 01432 556 789.
+
+Finally, I'd like to remind you that our annual charity fundraiser will take place on the
+28th of this month. Tickets are £12 for adults and £6 for children under 12. All proceeds
+go to the local food bank. Last year we raised over £2,000 and we hope to beat that this time!""",
+        'questions': [
+            {
+                'type': 'fill_blank',
+                'label': 'Part A: Fill in the Blanks',
+                'instruction': 'アナウンスの内容に基づいて空欄を埋めてください（1〜3語）。',
+                'items': [
+                    {
+                        'q': '1. Monthly gym membership costs £_______.',
+                        'answer': '28',
+                        'keywords': ['28'],
+                        'explanation': '"A monthly gym pass costs £28"'
+                    },
+                    {
+                        'q': '2. The swimming pool maintains a temperature of _______ degrees.',
+                        'answer': '28',
+                        'keywords': ['28'],
+                        'explanation': '"kept at a constant temperature of 28 degrees"'
+                    },
+                    {
+                        'q': '3. A block of ten swimming sessions costs £_______, saving £5.',
+                        'answer': '30',
+                        'keywords': ['30'],
+                        'explanation': '"a block of ten sessions for £30—that works out to a saving of £5"'
+                    },
+                    {
+                        'q': '4. The café will be closed from the 1st to the _______ of next month.',
+                        'answer': '15th',
+                        'keywords': ['15', '15th'],
+                        'explanation': '"closed for refurbishment from the 1st to the 15th of next month"'
+                    },
+                    {
+                        'q': '5. The yoga class is limited to _______ participants.',
+                        'answer': '12',
+                        'keywords': ['12', 'twelve'],
+                        'explanation': '"The class is limited to twelve participants"'
+                    },
+                    {
+                        'q': '6. Charity fundraiser ticket price for children under 12: £_______.',
+                        'answer': '6',
+                        'keywords': ['6'],
+                        'explanation': '"£6 for children under 12"'
+                    },
+                ]
+            },
+            {
+                'type': 'multiple_choice',
+                'label': 'Part B: Multiple Choice',
+                'instruction': '最も適切な答えを A〜C から選んでください。',
+                'items': [
+                    {
+                        'q': '7. Why is the Nelson Road car park closed?',
+                        'options': [
+                            'A. It is being expanded',
+                            'B. It is being resurfaced',
+                            'C. It is reserved for staff only',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"our car park on Nelson Road is undergoing resurfacing"'
+                    },
+                    {
+                        'q': '8. How can someone register for the yoga class?',
+                        'options': [
+                            'A. In person at the reception desk only',
+                            'B. By email or post',
+                            'C. Online or by phone',
+                        ],
+                        'answer': 'C',
+                        'explanation': '"You can register online at riversidecc.org or by calling 01432 556 789"'
+                    },
+                    {
+                        'q': '9. What happened at last year\'s charity fundraiser?',
+                        'options': [
+                            'A. They raised exactly £2,000',
+                            'B. They raised over £2,000',
+                            'C. They failed to meet their target',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"Last year we raised over £2,000"'
+                    },
+                ]
+            }
+        ],
+        'band7_tips': [
+            'Section 2は一人のスピーカーによる情報提供。数字・日付・固有名詞を素早くメモする。',
+            '"from X to Y" のような範囲表現は問題になりやすい。開始・終了両方を聞き逃さないよう注意。',
+            '似た数字が混在する場面（£28 の gym と £28 の pool 温度など）は混同しやすい。文脈で判断する。',
+            '答えは会話の流れ通りに出てくることが多い。問題を先読みして次に何を探すか準備しておく。',
+        ]
+    },
+    {
+        'id': 4,
+        'title': 'Section 4: Academic Lecture – Sleep and Memory',
+        'description': '大学の講義（睡眠と記憶）です。\nアカデミックな内容を聞き取り、概念・データを正確に把握しましょう。',
+        'transcript': """\
+Good morning. Today I want to talk about the relationship between sleep and memory consolidation
+—a topic that's become increasingly important as researchers learn more about what happens in
+our brains while we sleep.
+
+For most of human history, sleep was considered a passive state—a period of rest during which
+the brain essentially switched off. We now know this is completely wrong. During sleep, the
+brain is extraordinarily active, performing critical maintenance and processing tasks.
+
+Let me start with the basics of sleep structure. A typical night's sleep consists of several
+cycles, each lasting approximately 90 minutes. Within each cycle, we move through different
+stages: light sleep, deep sleep—also known as slow-wave sleep—and REM, or Rapid Eye Movement
+sleep. Each of these stages plays a distinct role in memory processing.
+
+Deep slow-wave sleep, which dominates the early part of the night, appears to be crucial for
+declarative memory—that is, memories of facts and events. During this stage, the hippocampus,
+which acts as a temporary storage area for new memories, replays recent experiences and
+transfers them to the neocortex for long-term storage. Think of it as moving files from a
+temporary folder to permanent storage on your hard drive.
+
+REM sleep, which is more prominent in the later hours of the night, plays a different role.
+It seems particularly important for procedural memory—skills and habits—and for emotional
+memory processing. Research by Dr. Matthew Walker at UC Berkeley has shown that REM sleep
+helps to strip away the emotional charge from difficult memories while preserving the factual
+content, a process he calls "overnight therapy."
+
+The practical implications of this research are significant. Studies consistently show that
+students who sleep after studying perform significantly better on memory tests than those who
+stay awake. A 2019 study found that sleeping for just 90 minutes after learning new material
+improved recall by up to 40% compared to an equal period of wakefulness. Napping has also
+been shown to be effective: a 20-minute nap can restore alertness and improve performance,
+while a 90-minute nap allows a full sleep cycle and can produce memory consolidation effects
+comparable to a full night's rest.
+
+Conversely, the effects of sleep deprivation on memory are severe. Even a single night of
+poor sleep can reduce the hippocampus's ability to encode new memories by up to 40%. Chronic
+sleep restriction—defined as sleeping less than six hours per night—has been associated with
+progressive cognitive decline and increased risk of neurodegenerative diseases including
+Alzheimer's disease.""",
+        'questions': [
+            {
+                'type': 'multiple_choice',
+                'label': 'Part A: Multiple Choice',
+                'instruction': '最も適切な答えを A〜D から選んでください。',
+                'items': [
+                    {
+                        'q': '1. What was the historical view of sleep mentioned in the lecture?',
+                        'options': [
+                            'A. A time for emotional processing',
+                            'B. A passive state with low brain activity',
+                            'C. A period essential for physical growth only',
+                            'D. A stage important for skill development',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"sleep was considered a passive state—a period of rest during which the brain essentially switched off"'
+                    },
+                    {
+                        'q': '2. What does the speaker compare the hippocampus\'s function to?',
+                        'options': [
+                            'A. A filing cabinet in an office',
+                            'B. A temporary folder on a computer',
+                            'C. A library catalogue system',
+                            'D. A recycling bin',
+                        ],
+                        'answer': 'B',
+                        'explanation': '"moving files from a temporary folder to permanent storage on your hard drive"'
+                    },
+                    {
+                        'q': '3. What does Dr. Walker\'s research suggest about REM sleep?',
+                        'options': [
+                            'A. It eliminates all emotional memories entirely',
+                            'B. It reduces factual recall',
+                            'C. It removes the emotional intensity of memories while keeping facts',
+                            'D. It is less important than slow-wave sleep',
+                        ],
+                        'answer': 'C',
+                        'explanation': '"strip away the emotional charge from difficult memories while preserving the factual content"'
+                    },
+                ]
+            },
+            {
+                'type': 'fill_blank',
+                'label': 'Part B: Fill in the Blanks',
+                'instruction': '講義の内容に基づいて空欄を埋めてください。',
+                'items': [
+                    {
+                        'q': '4. Each sleep cycle lasts approximately _______ minutes.',
+                        'answer': '90',
+                        'keywords': ['90'],
+                        'explanation': '"each lasting approximately 90 minutes"'
+                    },
+                    {
+                        'q': '5. Sleeping after learning improved recall by up to _______% compared to staying awake.',
+                        'answer': '40',
+                        'keywords': ['40'],
+                        'explanation': '"improved recall by up to 40% compared to an equal period of wakefulness"'
+                    },
+                    {
+                        'q': '6. Chronic sleep restriction is defined as sleeping less than _______ hours per night.',
+                        'answer': '6',
+                        'keywords': ['6', 'six'],
+                        'explanation': '"sleeping less than six hours per night"'
+                    },
+                    {
+                        'q': '7. The transfer of memories from hippocampus to neocortex mainly occurs during _______ sleep.',
+                        'answer': 'slow-wave',
+                        'keywords': ['slow-wave', 'slow wave', 'deep'],
+                        'explanation': '"Deep slow-wave sleep… replays recent experiences and transfers them to the neocortex"'
+                    },
+                ]
+            }
+        ],
+        'band7_tips': [
+            'Section 4は最難関。専門用語（declarative memory、REM、hippocampus など）が頻出する。',
+            'アナロジー（比喩）に注意。"temporary folder" など、概念を日常的な言葉で言い換える表現を聞き取ろう。',
+            '数字は要注意。90分・40%・6時間など多くの数字が登場する。何についての数字かをセットで覚える。',
+            '問題の順番は講義の流れに沿っている。先読みして「次に何が来るか」を予測しながら聞く。',
+        ]
+    },
 ]
 
 
